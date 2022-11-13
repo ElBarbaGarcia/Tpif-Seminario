@@ -5,14 +5,14 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 #esto conecta con mysql
-app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_HOST"] = "127.0.0.1"
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "password"
 app.config["MYSQL_DB"] = "DatosStock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
 mysql = MySQL()
 
 #configuraciones
-app.secret_key = "mysecretkey"
+#app.secret_key = "mysecretkey"
 
 
 #esto vicula el index.html con el App.py
@@ -41,7 +41,7 @@ def addProducto():
         print(cantidad)
         print(tipo)
         cur=mysql.connection.cursor()
-        cur.execute("INSERT INTO productos (fullname, phone, email) VALUES(%s, %s, %s)", (nombre, marca, modelo, precio, cantidad, tipo))
+        cur.execute("INSERT INTO productos (nombre, marca, modelo, precio, cantidad, tipo) VALUES(%s, %s, %s, %s, %s, %s)", (nombre, marca, modelo, precio, cantidad, tipo))
         mysql.connection.commit()
         flash("producto agregado exitosamente")
         return redirect(url_for(index))
