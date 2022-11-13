@@ -18,60 +18,72 @@ app.secret_key = "mysecretkey"
 #esto vicula el index.html con el App.py
 @app.route("/")
 def Index():
-    cur = mysql.connection.cuusor()
-    cur.execute("SELECT * FROM contacts")
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM productos")
     data = cur.fetchall()
     print(data)
-    return render_template("index.html", contacts = data)
+    return render_template("index.html", productos = data)
 
 #aca ceberiamos cambiarlo por productos y el admin ponga los datos del producto que quiere agregar a la base de datos
-@app.route("/add_contact", methods=["POST"])
-def addContact():
+@app.route("/add_producto", methods=["POST"])
+def addProducto():
     if request.method == "POST":
-        fullname = request.form["fullname"]
-        phone = request.form["phone"]
-        email = request.form["email"]
-        print(fullname)
-        print(phone)
-        print(email)
+        nombre = request.form["nombre"]
+        marca = request.form["marca"]
+        modelo = request.form["modelo"]
+        precio = request.form["precio"]
+        cantidad = request.form["cantidad"]
+        tipo = request.form["tipo"]
+        print(nombre)
+        print(marca)
+        print(modelo)
+        print(precio)
+        print(cantidad)
+        print(tipo)
         cur=mysql.connection.cursor()
-        cur.execute("INSERT INTO contacts (fullname, phone, email) VALUES(%s, %s, %s)", (fullname, phone, email))
+        cur.execute("INSERT INTO productos (fullname, phone, email) VALUES(%s, %s, %s)", (nombre, marca, modelo, precio, cantidad, tipo))
         mysql.connection.commit()
-        flash("contacto agregado exitosamente")
+        flash("producto agregado exitosamente")
         return redirect(url_for(index))
 
 #aca el admin puede deletear cualquier producto tocando el boton delete
 @app.route("/delete/<string:id>")
-def add_contact(id):
+def add_producto(id):
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM contacts where id = {0}", format(id))
+    cur.execute("DELETE FROM productos where id = {0}", format(id))
     mysql.connection.commit()
-    flash("Contact removed saccessfully")
+    flash("Product removed saccessfully")
     return redirect(url_for("index"))
 
 # aca puede editar un producto y lo manda a edit.html en donde cambia las cosas
-@app.route("/edit_contact/<id>")
-def get_contact():
+@app.route("/edit_producto/<id>")
+def get_producto():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM contacts WHERE id = %s", (id))
+    cur.execute("SELECT * FROM productos WHERE id = %s", (id))
     data = cur.fetchall()
-    return render_template("edit.html", contact = data[0])
+    return render_template("edit.html", producto = data[0])
 
 #aca updatea las cosas que modificas en edit.html
 @app.route("/update/<id>", methods = ["POST"])
-def update_contact(id):
+def update_producto(id):
     if request.method == "POST":
-        fullname = request.form["fullname"]
-        phone = request.form["phone"]
-        email = request.form["email"]
+        nombre = request.form["nombre"]
+        marca = request.form["marca"]
+        modelo = request.form["modelo"]
+        precio = request.form["precio"]
+        cantidad = request.form["cantidad"]
+        tipo = request.form["tipo"]
         cur = mysql.connection.cursor
         cur.execute("""" 
-        UPDATE contacts
-        SET fullname = %s,
-            email = %s,
-            phone = %s
+        UPDATE productos
+        SET nombre = %s,
+            marca = %s,
+            modelo = %s,
+            precio = %s,
+            cantidad = %s,
+            tipo = %s
         WHERE id = %s
-        """, (fullname, email, phone))
+        """, (nombre, marca, modelo, precio, cantidad, tipo))
         flash("Se actualizo corrrectamente")
         mysql.connection.commit()
         return redirect(url_for("index"))

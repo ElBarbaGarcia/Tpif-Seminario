@@ -15,15 +15,24 @@
         {% endif %}
         {% endwith %}
         <div class="card card-body">
-            <form action="/add_contact" method="POST">
+            <form action="/add_producto" method="POST">
                 <div class="form-group">
-                    <input type="text" name="fullname" placeholder="Fullname" class="from-control">                   
+                    <input type="text" name="nombre" placeholder="Nombre" class="from-control">                   
                 </div>
                 <div class="form-group">
-                    <input type="text" name="phone" placeholder="Phone" class="from-control">
+                    <input type="text" name="marca" placeholder="Marca" class="from-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="Email" class="from-control">
+                    <input type="text" name="modelo" placeholder="Modelo" class="from-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="precio" placeholder="Precio" class="from-control">                   
+                </div>
+                <div class="form-group">
+                    <input type="text" name="cantidad" placeholder="Cantidad" class="from-control">                   
+                </div>
+                <div class="form-group">
+                    <input type="text" name="tipo" placeholder="Tipo" class="from-control">                   
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">
@@ -37,22 +46,25 @@
         <table class="table table-striped table-bordered bg-white table-sm">
             <thead>
                 <tr>
-                    <td> Fullname</td>
-                    <td> Phone</td>
-                    <td> Email</td>
+                    <td> Name</td>
+                    <td> Marca</td>
+                    <td> Modelo</td>
+                    <td> Precio</td>
+                    <td> Cantidad</td>
+                    <td> Tipo</td>
                     <td> operations</td>
                 </tr>
             </thead>
             
             <tbody>
-                {% for contacts in contacts %}
+                {% for productos in productos %}
                 <tr>
-                    <td>{{ contact.1 }}</td>
-                    <td>{{ contact.2 }}</td>
-                    <td>{{ contact.3 }}</td>
+                    <td>{{ producto.1 }}</td>
+                    <td>{{ producto.2 }}</td>
+                    <td>{{ producto.3 }}</td>
                     <td>
-                        <a href="/edit/{{contact.0}}" class="btn btn-secondary">Edit</a>
-                        <a href="/delete/{{contact.0}}" class="btn btn-danger btn-delete">Delete</a>
+                        <a href="/edit/{{producto.0}}" class="btn btn-secondary">Edit</a>
+                        <a href="/delete/{{producto.0}}" class="btn btn-danger btn-delete">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
