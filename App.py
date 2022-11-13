@@ -78,7 +78,7 @@ def update_contact(id):
     
 #este es el puerto de localhost 
 if __name__ == "__main__":
-    app.run(port = 3306, debug = True)
+    app.run(port = 8080, debug = True)
 
 #todo producto que sea eliminado o modificado se hace por id 
 #que es un dato "invisible" que tiene como punto las posi 0 que se ven en los html
