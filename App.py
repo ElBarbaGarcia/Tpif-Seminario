@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "password"
-app.config["MYSQL_DB"] = "TpifDatos" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
+app.config["MYSQL_DB"] = "DatosStock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
 mysql = MySQL()
 
 #configuraciones
@@ -78,7 +78,7 @@ def update_contact(id):
     
 #este es el puerto de localhost 
 if __name__ == "__main__":
-    app.run(port = 8080, debug = True)
+    app.run(port = 33065, debug = True)
 
 #todo producto que sea eliminado o modificado se hace por id 
 #que es un dato "invisible" que tiene como punto las posi 0 que se ven en los html
