@@ -5,14 +5,25 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 #esto conecta con mysql
-app.config["MYSQL_HOST"] = "127.0.0.1"
+app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = "password"
-app.config["MYSQL_DB"] = "DatosStock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
+app.config["MYSQL_PASSWORD"] = "mike190099"
+app.config["MYSQL_DB"] = "datosstock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
+app.config["MYSQL_PORT"] = ""
+app.config["MYSQL_UNIX_SOCKET"] = ""
+app.config["MYSQL_CONNECT_TIMEOUT"] = ""
+app.config["MYSQL_READ_DEFAULT_FILE"] = ""
+app.config["MYSQL_USE_UNICODE"] = ""
+app.config["MYSQL_CHARSET"] = ""
+app.config["MYSQL_SQL_MODE"] = ""
+app.config["MYSQL_CURSORCLASS"] = ""
+app.config["MYSQL_AUTOCOMMIT"] = ""
+app.config["MYSQL_CUSTOM_OPTIONS"] = ""
 mysql = MySQL()
 
+
 #configuraciones
-#app.secret_key = "mysecretkey"
+app.secret_key = "mysecretkey"
 
 
 #esto vicula el index.html con el App.py
@@ -47,7 +58,7 @@ def addProducto():
         return redirect(url_for(index))
 
 #aca el admin puede deletear cualquier producto tocando el boton delete
-@app.route("/delete/<string:id>")
+@app.route("/delete/<int:id>")
 def add_producto(id):
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM productos where id = {0}", format(id))
