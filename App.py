@@ -8,17 +8,7 @@ app = Flask(__name__)
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "mike190099"
-app.config["MYSQL_DB"] = "datosstock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
-app.config["MYSQL_PORT"] = ""
-app.config["MYSQL_UNIX_SOCKET"] = ""
-app.config["MYSQL_CONNECT_TIMEOUT"] = ""
-app.config["MYSQL_READ_DEFAULT_FILE"] = ""
-app.config["MYSQL_USE_UNICODE"] = ""
-app.config["MYSQL_CHARSET"] = ""
-app.config["MYSQL_SQL_MODE"] = ""
-app.config["MYSQL_CURSORCLASS"] = ""
-app.config["MYSQL_AUTOCOMMIT"] = ""
-app.config["MYSQL_CUSTOM_OPTIONS"] = ""
+app.config["MYSQL_DB"] = "stock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
 mysql = MySQL()
 
 
