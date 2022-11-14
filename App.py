@@ -8,12 +8,9 @@ app = Flask(__name__)
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "mike190099"
-app.config["MYSQL_DB"] = "stock" #PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
-mysql = MySQL()
+app.config["MYSQL_DB"] = "datosstock"#PONGANLE EL NOMBRE QUE QUIERAN A LA BASE DE DATOS(esto es lo q vincula el programa con la base de datos)
+mysql = MySQL(app)
 
-
-#configuraciones
-app.secret_key = "mysecretkey"
 
 
 #esto vicula el index.html con el App.py
